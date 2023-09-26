@@ -70,6 +70,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return scoreList;
     }
+
+    @SuppressLint("Range")
+    public String getPlayerName() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String playerName = null;
+
+        Cursor cursor = db.query(
+                DatabaseContract.ScoreEntry.TABLE_NAME,
+                new String[]{DatabaseContract.ScoreEntry.COLUMN_NAME_PLAYER_NAME},
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            playerName = cursor.getString(cursor.getColumnIndex(DatabaseContract.ScoreEntry.COLUMN_NAME_PLAYER_NAME));
+        }
+
+        cursor.close();
+        db.close();
+
+        return playerName;
+    }
 }
 
 

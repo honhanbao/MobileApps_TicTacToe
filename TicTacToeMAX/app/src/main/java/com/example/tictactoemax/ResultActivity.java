@@ -44,10 +44,10 @@ public class ResultActivity extends AppCompatActivity {
         if (intent != null) {
             Log.e("TicTacToe", "intent created");
 
-            message = intent.getStringExtra("result_message");
+            String message = intent.getStringExtra("result_message");
             Log.e("TicTacToe", message);
 
-            int moves = intent.getIntExtra("moves", 0);
+            moves = intent.getIntExtra("moves", 0);
             Log.e("TicTacToe", String.valueOf(moves));
 
             if (message != null) {
@@ -89,14 +89,34 @@ public class ResultActivity extends AppCompatActivity {
      * SAVE SCORE BUTTON
      */
     private void saveScore() {
+//        // Get the player's name from the EditText
+//        String name = playerName.getText().toString().trim();
+//
+//        // Ensure that a name is entered
+//        if (name.isEmpty()) {
+//            playerName.setError("Please enter your name.");
+//            return;
+//        }
+
         // Get the player's name from the EditText
         String name = playerName.getText().toString().trim();
 
-        // Ensure that a name is entered
-        if (name.isEmpty()) {
+        // Check if a name exists in the database
+        String existingName = dbHelper.getPlayerName();
+
+        // If no name was provided and there's no existing name, show an error
+        if (name.isEmpty() && (existingName == null || existingName.isEmpty())) {
             playerName.setError("Please enter your name.");
             return;
         }
+
+        // If no name was provided but there's an existing name, use the existing name
+        if (name.isEmpty() && existingName != null && !existingName.isEmpty()) {
+            name = existingName;
+        }
+
+        // Disable the playerName EditText to prevent further input
+        playerName.setEnabled(false);
 
         // Insert the score into the local database
         // create database
@@ -123,12 +143,15 @@ public class ResultActivity extends AppCompatActivity {
 
     }
 
+
+
+
     /**
      * PLAY AGAIN BUTTON
      */
     private void playAgain() {
         // Start a new game (you may want to pass additional data if needed)
-        Intent intent = new Intent(this, GameActivity.class);
+        Intent intent = new Intent(this, GameActivityTest.class);
         startActivity(intent);
         finish(); // Close the current result screen
     }
@@ -137,6 +160,7 @@ public class ResultActivity extends AppCompatActivity {
      * EXIT APP BUTTON
      */
     private void exitApp() {
-        finish(); // Close the app
+        finish();               // Close or finish the current activity
+        finishAffinity();       // Finish the current activity and all parent activities to exit the app.
     }
 }
