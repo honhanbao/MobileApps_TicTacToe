@@ -1,6 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".GameActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <GridLayout
+        android:id="@+id/gridLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnCount="3"
+        android:rowCount="3"
+        android:layout_centerInParent="true"
+        android:background="@android:color/darker_gray"
+        android:padding="4dp">
+
+        <!-- Define buttons for the Tic-Tac-Toe grid -->
+        <Button
+            android:id="@+id/button00"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button01"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button02"
+            style="@style/TicTacToeButton" />
+
+        <Button
+            android:id="@+id/button10"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button11"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button12"
+            style="@style/TicTacToeButton" />
+
+        <Button
+            android:id="@+id/button20"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button21"
+            style="@style/TicTacToeButton" />
+        <Button
+            android:id="@+id/button22"
+            style="@style/TicTacToeButton" />
+
+    </GridLayout>
+
+    <Button
+        android:id="@+id/resetButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Game"
+        android:layout_below="@id/gridLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
+
+</RelativeLayout>

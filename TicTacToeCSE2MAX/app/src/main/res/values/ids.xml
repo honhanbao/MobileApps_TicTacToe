@@ -1,3 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <item name="result_message" type="id">Result Message</item>
+    <item name="player_name" type="id">Player Name</item>
+    <item name="save_score_button" type="id">Save Score Button</item>
+    <item name="play_again_button" type="id">Play Again Button</item>
+    <item name="high_scores_title" type="id">High Score Title</item>
+    <item name="high_scores_list" type="id">High Score List</item>
 </resources>
